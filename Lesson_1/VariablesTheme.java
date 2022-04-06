@@ -1,14 +1,13 @@
 public class VariablesTheme {
     public static void main (String[] args) {
-
         //Создание переменных и вывод их значений на консоль
         System.out.println("Создание переменных и вывод их значений на консоль");
         boolean pc = true;
         System.out.println(pc);
         byte monitors = 2;
         System.out.println(monitors);
-        short gpu_ram = 8148;
-        System.out.println(gpu_ram);
+        short gpuRam = 8148;
+        System.out.println(gpuRam);
         int cpus = 6;
         System.out.println(cpus);
         long cpu_name = 8400;
