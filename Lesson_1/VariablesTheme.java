@@ -23,10 +23,10 @@ public class VariablesTheme {
         System.out.println("\nРасчет стоимости товара со скидкой");
         int fullPriceX = 100;
         int fullPriceY = 200;
-        double descount = (fullPriceX + fullPriceY) * 0.11;
-        double sumWithDescount = fullPriceX + fullPriceY - descount;
-        System.out.println("Сумма скидки составляет: " + descount);
-        System.out.println("Стоимость обоих товаров с учетом скидки: " + sumWithDescount);
+        double discount = (fullPriceX + fullPriceY) * 0.11;
+        double sumWithDiscount = fullPriceX + fullPriceY - discount;
+        System.out.println("Сумма скидки составляет: " + discount);
+        System.out.println("Стоимость обоих товаров с учетом скидки: " + sumWithDiscount);
 
         //Вывод на консоль слова JAVA
         System.out.println("\nВывод на консоль слова JAVA");
