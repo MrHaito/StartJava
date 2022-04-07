@@ -1,5 +1,5 @@
 public class VariablesTheme {
-    public static void main (String[] args) {
+    public static void main(String[] args) {
         //Создание переменных и вывод их значений на консоль
         System.out.println("Создание переменных и вывод их значений на консоль");
         boolean pc = true;
@@ -23,10 +23,10 @@ public class VariablesTheme {
         System.out.println("\nРасчет стоимости товара со скидкой");
         int fullPriceX = 100;
         int fullPriceY = 200;
-        double descont = (fullPriceX + fullPriceY) * 0.11;
-        double sumWithDescont = fullPriceX + fullPriceY - descont;
-        System.out.println("Сумма скидки составляет: " + descont);
-        System.out.println("Стоимость обоих товаров с учетом скидки: " + sumWithDescont);
+        double descount = (fullPriceX + fullPriceY) * 0.11;
+        double sumWithDescount = fullPriceX + fullPriceY - descount;
+        System.out.println("Сумма скидки составляет: " + descount);
+        System.out.println("Стоимость обоих товаров с учетом скидки: " + sumWithDescount);
 
         //Вывод на консоль слова JAVA
         System.out.println("\nВывод на консоль слова JAVA");
@@ -45,14 +45,14 @@ public class VariablesTheme {
         System.out.println(shortMax);
         System.out.println(intMax);
         System.out.println(longMax);
-        System.out.println(byteMax++);
-        System.out.println(byteMax--);
-        System.out.println(shortMax++);
-        System.out.println(shortMax--);
-        System.out.println(intMax++);
-        System.out.println(intMax--);
-        System.out.println(longMax++);
-        System.out.println(longMax--);
+        System.out.println(++byteMax);
+        System.out.println(--byteMax);
+        System.out.println(++shortMax);
+        System.out.println(--shortMax);
+        System.out.println(++intMax);
+        System.out.println(--intMax);
+        System.out.println(++longMax);
+        System.out.println(--longMax);
 
         //Перестановка значений переменных
         System.out.println("\nПерестановка значений переменных");
@@ -95,11 +95,11 @@ public class VariablesTheme {
         char leftBracket = 40;
         char rightBracket = 41;
         char space = 0;
-        System.out.println(space + "" + space + "" + space + "" + space + "" + slash + "" + "" + backslash + "" + space + "" + space + "" + space + "" + space);
-        System.out.println(space + "" + space + "" + space + "" + slash + "" + space + "" + space + "" + backslash + "" + space + "" + space + "" + space);
-        System.out.println(space + "" + space + "" + slash + "" + underscore + "" + leftBracket + "" + space + "" + rightBracket + "" + backslash + "" + space + "" + space);
-        System.out.println(space + "" + slash + "" + space + "" + space + "" + space + "" + space + "" + space + "" + space + "" + backslash + "" + space);
-        System.out.println(slash + "" + underscore + "" + underscore + "" + underscore + "" + underscore + "" + slash + "" + backslash + "" + underscore + "" + underscore + "" + backslash);
+        System.out.println("" + space + space + space + space + slash + backslash + space + space + space + space);
+        System.out.println("" + space + space + space + slash + space + space + backslash + space + space + space);
+        System.out.println("" + space + space + slash + underscore + leftBracket + space + rightBracket + backslash + space + space);
+        System.out.println("" + space + slash + space + space + space + space + space + space + backslash + space);
+        System.out.println("" + slash + underscore + underscore + underscore + underscore + slash + backslash + underscore + underscore + backslash);
 
         //Отображение количества сотен, десятков и единиц числа
         System.out.println("\nОтображение количества сотен, десятков и единиц числа");
