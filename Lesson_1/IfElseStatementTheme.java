@@ -156,9 +156,9 @@ public class IfElseStatementTheme {
         int selfCost = 9_000;
         int yearProfit = (mediumCost - selfCost - rent) * 12;
         if (yearProfit > 0) {
-            System.out.println ("Прибыль продавца за год составляет + " + yearProfit + " руб");
+            System.out.println ("Прибыль продавца за год составляет +" + yearProfit + " руб");
         } else {
-            System.out.println ("Убыток продавца за год составляет - " + yearProfit + " руб");
+            System.out.println ("Убыток продавца за год составляет -" + yearProfit + " руб");
         }
 
         //Определение существования треугольника
@@ -181,9 +181,9 @@ public class IfElseStatementTheme {
         if (triangleB < triangleA && triangleC < triangleA) {
             System.out.println("Катет a = " + triangleB + "\nКатет b = " + triangleC + "\nГипотенуза c = " + triangleA);
         }
-        double p = (triangleA + triangleB + triangleC) / 2;
-        double s = Math.sqrt(p * (p - triangleA) * (p - triangleB) * (p - triangleC));
-        System.out.println("Площадь треугольника равно " + s);
+        double halfPerimetr = (triangleA + triangleB + triangleC) / 2;
+        double square = Math.sqrt(halfPerimetr * (halfPerimetr - triangleA) * (halfPerimetr - triangleB) * (halfPerimetr - triangleC));
+        System.out.println("Площадь треугольника равна " + square);
         System.out.println("Изображение треугольника");
         System.out.println("|\\");
         System.out.println("| \\");
