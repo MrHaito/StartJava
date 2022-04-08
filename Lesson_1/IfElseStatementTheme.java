@@ -169,6 +169,8 @@ public class IfElseStatementTheme {
         int angleA = 90;
         if (triangleA + triangleB > triangleC && triangleA + triangleC > triangleB && triangleB + triangleC > triangleA) {
             System.out.println("Треугольник со сторонами " + triangleA + ", " + triangleB + ", " + triangleC + " может существовать.");
+        } else {
+            System.out.println("Треугольник со сторонами " + triangleA + ", " + triangleB + ", " + triangleC + " не может существовать.");
         }
         if (triangleA < triangleC && triangleB < triangleC) {
             System.out.println("Катет a = " + triangleA + "\nКатет b = " + triangleB + "\nГипотенуза c = " + triangleC);
@@ -201,6 +203,7 @@ public class IfElseStatementTheme {
         int banknoteCount1 = moneyTotal - (50 * banknoteCount50 + 10 * banknoteCount10);
         banknoteCount = banknoteCount + banknoteCount1;
         System.out.println("Банкнот по 1 нужно " + banknoteCount1);
+        System.out.println("Общее количество банкнот - " + banknoteCount);
         System.out.println("Расчет исходной суммы по полученному количеству номиналов банкнот");
         System.out.println(banknoteCount50 + " по 50 + " + banknoteCount10 + " по 10 + " + banknoteCount1 + " по 1 = " + (banknoteCount50 * 50 + banknoteCount10 * 10 + banknoteCount1));
     }
