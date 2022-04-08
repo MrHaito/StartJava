@@ -75,16 +75,16 @@ public class IfElseStatementTheme {
             matchingThirdDigit = true;
             valueThirdDigit = matchingDigitX % 10;
         }
-        if (matchingFirstDigit != true && matchingSecondDigit != true && matchingThirdDigit != true) {
+        if (!matchingFirstDigit && !matchingSecondDigit && !matchingThirdDigit) {
             System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " нет совпадающих цифр, стоящих в одном разряде");
         }
-        if (matchingFirstDigit == true) {
+        if (matchingFirstDigit) {
             System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число в первом разряде - " + valueFirstDigit);
         }
-        if (matchingSecondDigit == true) {
+        if (matchingSecondDigit) {
             System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число во втором разряде - " + valueSecondDigit);
         }
-        if (matchingThirdDigit == true) {
+        if (matchingThirdDigit) {
             System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число в третьем разряде - " + valueThirdDigit);
         }
 
