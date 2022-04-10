@@ -55,20 +55,26 @@ public class IfElseStatementTheme {
 
         //Поиск общей цифры в числах
         System.out.println("\nПоиск общей цифры в числах");
-        int matchingDigitX = 333;
-        int matchingDigitY = 333;
-        if (matchingDigitX / 100 == matchingDigitY / 100) {
-            System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число в первом разряде - " + matchingDigitX / 100);
+        num1 = 123;
+        num2 = 456;
+        boolean matchingFirstDigit = false;
+        boolean matchingSecondDigit = false;
+        boolean matchingThirdDigit = false;
+        if (num1 / 100 == num2 / 100) {
+            System.out.println("У чисел " + num1 + " и " + num2 + " совпадает число в первом разряде - " + num1 / 100);
+            matchingFirstDigit = true;
         }
-        if (matchingDigitX % 100 / 10 == matchingDigitY % 100 / 10) {
-            System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число во втором разряде - " + matchingDigitX % 100 / 10);
+        if (num1 % 100 / 10 == num2 % 100 / 10) {
+            System.out.println("У чисел " + num1 + " и " + num2 + " совпадает число во втором разряде - " + num1 % 100 / 10);
+            matchingSecondDigit = true;
         } 
-        if (matchingDigitX % 10 == matchingDigitY % 10) {
-            System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " совпадает число в третьем разряде - " + matchingDigitX % 10);
+        if (num1 % 10 == num2 % 10) {
+            System.out.println("У чисел " + num1 + " и " + num2 + " совпадает число в третьем разряде - " + num1 % 10);
+            matchingThirdDigit = true;
 
         }
-        if (matchingDigitX / 100 != matchingDigitY / 100 && matchingDigitX % 100 / 10 != matchingDigitY % 100 / 10 && matchingDigitX % 10 != matchingDigitY % 10) {
-            System.out.println("У чисел " + matchingDigitX + " и " + matchingDigitY + " нет совпадающих цифр, стоящих в одном разряде");
+        if (!matchingFirstDigit && !matchingSecondDigit && !matchingThirdDigit) {
+            System.out.println("У чисел " + num1 + " и " + num2 + " нет совпадающих цифр, стоящих в одном разряде");
         }
 
         //Определение буквы, числа или символа по их коду
