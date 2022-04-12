@@ -3,18 +3,18 @@ public class CyclesTheme {
         //1. Подсчет суммы четных и нечетных чисел
         System.out.println("1. Подсчет суммы четных и нечетных чисел");
         int num1 = -10;
-        int evenSum = 0;
-        int oddSum = 0;
+        int sumEven = 0;
+        int sumOdd = 0;
         do {
             if (num1 % 2 == 0) {
-                evenSum += num1;
+                sumEven += num1;
             } else {
-                oddSum += num1;
+                sumOdd += num1;
             }
             num1++;
         } while (num1 <= 21);
-        System.out.println("Сумма четных чисел = " + evenSum);
-        System.out.println("Сумма нечетных чисел = " + oddSum);
+        System.out.println("Сумма четных чисел = " + sumEven);
+        System.out.println("Сумма нечетных чисел = " + sumOdd);
 
         //2. Вывод чисел между max и min
         //В этой задаче есть еще вариант попарного сравнения числа с двумя другими, чтобы определить является ли оно минимальным или максимальным среди трех, а потом из оставшихся двух также найти минимум и максимум. Но я остановился на таком варианте, так как тут гораздо меньше кода получается.
@@ -22,11 +22,8 @@ public class CyclesTheme {
         num1 = 10;
         int num2 = 5;
         int num3 = -1;
-        int min = Integer.MAX_VALUE;
-        int max = Integer.MIN_VALUE;
-        if (num1 < min) {
-            min = num1;
-        }
+        int min = num1;
+        int max = num2;
         if (num2 < min) {
             min = num2;
         }
@@ -36,13 +33,10 @@ public class CyclesTheme {
         if (num1 > max) {
             max = num1;
         }
-        if (num2 > max) {
-            max = num2;
-        }
         if (num3 > max) {
             max = num3;
         }
-        for (int i = max-1; i > min; i--) {
+        for (int i = --max; i > min; i--) {
             System.out.print(i + " ");
         }
 
@@ -50,43 +44,44 @@ public class CyclesTheme {
         System.out.println("\n\n3. Вывод реверсивного числа и суммы его цифр");
         int srcNum = 1234;
         int count = 0;
-        int srcNumBuffer = 0;
-        int srcDigitSum = 0;
+        int digit = 0;
+        int sumDigits = 0;
         System.out.print("Исходное число в обратном порядке: ");
-        while (count < 4) {
-            srcNumBuffer = srcNum % 10;
-            srcDigitSum += srcNumBuffer;
+        while (srcNum != 0) {
+            digit = srcNum % 10;
+            sumDigits += digit;
             srcNum /= 10;
-            System.out.print(srcNumBuffer);
-            count++;
+            System.out.print(digit);
         }
-        System.out.println("\nСумма полученных чисел: " + srcDigitSum);
+        System.out.println("\nСумма полученных чисел: " + sumDigits);
 
         //4. Вывод чисел на консоль в несколько строк
+        int start = 1;
+        int end = 24;
+        int countNumbers = 0;
         System.out.println("\n4. Вывод чисел на консоль в несколько строк");
-        for (int i = 1, j = 0; i < 24; i+=2, j++) {
+        for (int i = 1, j = 0; i < end; i+=2, j++) {
             if (j % 5 == 0 && j != 0) {
                 System.out.print("\n");
             }
-            System.out.format("%2d ", i);
+            System.out.format("%3d ", i);
+            countNumbers++;
         }
-        for (int i = 0; i < 3; i++) {
-            System.out.format("%2d ", 0);
+        int countZeros = 5 - countNumbers % 5;
+        for (int i = 0; i < countZeros; i++) {
+            System.out.format("%3d ", 0);
         }
 
         //5. Проверка количества единиц на четность
         System.out.println("\n\n5. Проверка количества единиц на четность");
         srcNum = 3141591;
-        int srcBuffer = 0;
         int unitCount = 0;
         count = 0;
-        while (count < 7) {
-            srcBuffer = srcNum % 10;
-            if (srcBuffer == 1) {
+        while (srcNum != 0) {
+            if (srcNum % 10 == 1) {
                 unitCount++;
             }
             srcNum /= 10;
-            count++;
         }
         System.out.println("Количество единиц: " + unitCount);
         if (unitCount % 2 == 0) {
@@ -97,13 +92,13 @@ public class CyclesTheme {
 
         //6. Отображение фигур в консоли
         System.out.println("\n6. Отображение фигур в консоли");
-        for (int i = 0; i < 5; i++) {
-            for (int j = 0; j < 10; j++) {
-                System.out.print("*");
+        for (int i = 0; i < 50; i++) {
+            if (i % 10 == 0 && i != 0) {
+                System.out.print("\n");
             }
-            System.out.print("\n");
+            System.out.print("*");
         }
-        System.out.print("\n");
+        System.out.print("\n\n");
         int count1 = 5;
         while (count1 >= 0) {
             int count2 = 0;
@@ -137,7 +132,7 @@ public class CyclesTheme {
         //У меня в этой задаче почему то в строчку выводятся одни символы, в столбец другие, я не могу точно проверить результат. Но вообще условия вроде заданы правильно.
         System.out.println("\n7. Отображение ASCII-символов");
         for (int i = 0; i <= 127; i++) {
-            if (i < 48 || i > 57 && i < 65 || i > 90 && i < 97 || i > 122) {
+            if ((i < 48 || i > 57) && (i < 65 || i > 90) && (i < 97 || i > 122)) {
                 if (i % 2 != 0) {
                     System.out.print((char) i + " ");
                 }
@@ -147,10 +142,10 @@ public class CyclesTheme {
         //8. Проверка, является ли число палиндромом
         System.out.println("\n\n8. Проверка, является ли число палиндромом");
         srcNum = 12321;
-        srcNumBuffer = srcNum;
+        int srcNumBuffer = srcNum;
         int reversedSrcNum = 0;
         while(srcNum != 0) {
-            int digit = srcNum % 10;
+            digit = srcNum % 10;
             reversedSrcNum = reversedSrcNum * 10 + digit;
             srcNum /= 10;
         }
