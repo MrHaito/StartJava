@@ -1,6 +1,6 @@
 public class MyFirstGame {
     public static void main(String[] args) {
-        int computerNum = (int) (Math.random() * (100 - 0) + 0);
+        int computerNum = (int) (Math.random() * 100);
         int playerNum = 47;
         System.out.println(computerNum);
         while (playerNum != computerNum) {
