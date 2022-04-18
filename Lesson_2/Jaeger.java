@@ -63,19 +63,19 @@ public class Jaeger {
         return armor;
     }
 
-    void fight() {
+    public void fight() {
         System.out.println(modelName + " начинает сражение");
     }
 
-    void useFirstWeapon() {
+    public void useFirstWeapon() {
         System.out.println(modelName + " использует первое оружие");
     }
 
-    void useSecondWeapon() {
+    public void useSecondWeapon() {
         System.out.println(modelName + " использует второе оружие");
     }
 
-    void walk() {
+    public void walk() {
         System.out.println(modelName + " начинает движение");
     }
 }
