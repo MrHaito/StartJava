@@ -28,7 +28,7 @@ public class Calculator {
         return b;
     }
 
-    void calculating() {
+    void calculate() {
         switch(sign) {
             case '+':
                 result = a + b;
