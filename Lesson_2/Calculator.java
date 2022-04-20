@@ -28,22 +28,22 @@ public class Calculator {
         return b;
     }
 
-    void calculation() {
+    void calculating() {
         switch(sign) {
             case '+':
-                this.result = a + b;
+                result = a + b;
                 break;
             case '-':
-                this.result = a - b;
+                result = a - b;
                 break;
             case '*':
-                this.result = a * b;
+                result = a * b;
                 break;
             case '/':
-                this.result = a / b;
+                result = a / b;
                 break;
             case '^':
-                this.result = a;
+                result = a;
                 for (int i = 1; i < b; i++) {
                     result *= a;
                 }
