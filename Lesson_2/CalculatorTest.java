@@ -5,7 +5,6 @@ public class CalculatorTest {
         Calculator calculator = new Calculator();
         Scanner scanner = new Scanner(System.in);
         String answer = "yes";
-        boolean continueCalculations = true;
 
         while(answer.equals("yes") && !answer.equals("no")) {
             System.out.print("Введите первое число: ");
