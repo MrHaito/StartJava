@@ -1,6 +1,6 @@
 public class Player {
     private String name;
-    int number = 0;
+    private int number;
 
     public Player(String name) {
         this.name = name;
