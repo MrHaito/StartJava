@@ -4,7 +4,6 @@ import java.util.Scanner;
 public class GuessNumber {
     private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
-    private int computerNum = random.nextInt(101);
     private Player player1;
     private Player player2;
     private Player currentPlayer;
@@ -15,20 +14,14 @@ public class GuessNumber {
         this.player2 = player2;
     }
 
-    public void prepareGame() {
+    public void start() {
+        int computerNum = random.nextInt(101);
         if (currentPlayer == null) {
-            currentPlayer = player1;
+            currentPlayer = player2;
         }
-    }
-
-    public void startGame() {
         System.out.println("Начинаем игру!");
         while (currentPlayer.getNumber() != computerNum) {
-            if (count % 2 == 0) {
-                currentPlayer = player2;
-            } else {
-                currentPlayer = player1;
-            }
+            currentPlayer = currentPlayer == player2 ? player1 : player2;
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.setNumber(scanner.nextInt());
             if (currentPlayer.getNumber() < computerNum) {
@@ -38,14 +31,8 @@ public class GuessNumber {
             } else {
                 System.out.println(currentPlayer.getName() + " победил!");
             }
-            count++;
         }
-    }
-
-    public void endGame() {
-        count = 1;
         player1.setNumber(0);
         player2.setNumber(0);
-        computerNum = random.nextInt(101);
     }
 }
