@@ -16,9 +16,7 @@ public class GuessNumber {
 
     public void start() {
         int computerNum = random.nextInt(101);
-        if (currentPlayer == null) {
-            currentPlayer = player2;
-        }
+        currentPlayer = player2;
         System.out.println("Начинаем игру!");
         while (currentPlayer.getNumber() != computerNum) {
             currentPlayer = currentPlayer == player2 ? player1 : player2;
