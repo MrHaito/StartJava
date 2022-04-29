@@ -16,10 +16,9 @@ public class GuessNumber {
 
     public void start() {
         int computerNum = random.nextInt(100) + 1;
-        currentPlayer = player2;
         System.out.println("Начинаем игру!");
         do {
-            currentPlayer = currentPlayer == player2 ? player1 : player2;
+            currentPlayer = currentPlayer == player1 ? player2 : player1;
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.setNum(scanner.nextInt());
             if (currentPlayer.getNum() < computerNum) {
