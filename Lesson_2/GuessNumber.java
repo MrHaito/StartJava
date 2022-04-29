@@ -15,22 +15,22 @@ public class GuessNumber {
     }
 
     public void start() {
-        int computerNum = random.nextInt(101);
+        int computerNum = random.nextInt(100) + 1;
         currentPlayer = player2;
         System.out.println("Начинаем игру!");
-        while (currentPlayer.getNumber() != computerNum) {
+        do {
             currentPlayer = currentPlayer == player2 ? player1 : player2;
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
-            currentPlayer.setNumber(scanner.nextInt());
-            if (currentPlayer.getNumber() < computerNum) {
-                System.out.println("Число " + currentPlayer.getNumber() + " меньше того, что загадал компьютер");
-            } else if (currentPlayer.getNumber() > computerNum) {
-                System.out.println("Число " + currentPlayer.getNumber() + " больше того, что загадал компьютер");
+            currentPlayer.setNum(scanner.nextInt());
+            if (currentPlayer.getNum() < computerNum) {
+                System.out.println("Число " + currentPlayer.getNum() + " меньше того, что загадал компьютер");
+            } else if (currentPlayer.getNum() > computerNum) {
+                System.out.println("Число " + currentPlayer.getNum() + " больше того, что загадал компьютер");
             } else {
                 System.out.println(currentPlayer.getName() + " победил!");
             }
-        }
-        player1.setNumber(0);
-        player2.setNumber(0);
+        } while (currentPlayer.getNum() != computerNum);
+        player1.setNum(0);
+        player2.setNum(0);
     }
 }
