@@ -1,3 +1,5 @@
+package com.startjava.lesson_1.ifelse;
+
 public class IfElseStatementTheme {
     public static void main(String[] args) {
         //Перевод псевдокода на язык Java
