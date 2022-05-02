@@ -30,32 +30,15 @@ public class Calculator {
         return b;
     }
 
-    void calculate() {
-        switch(sign) {
-            case '+':
-                result = a + b;
-                break;
-            case '-':
-                result = a - b;
-                break;
-            case '*':
-                result = a * b;
-                break;
-            case '/':
-                result = a / b;
-                break;
-            case '^':
-                result = a;
-                for (int i = 1; i < b; i++) {
-                    result *= a;
-                }
-                break;
-            case '%':
-                result = a % b;
-                break;
-            default:
-                break;
-        }
-        System.out.println(a + " " + sign + " " + b + " = " + result);
+    int calculate() {
+        return switch (sign) {
+            case '+' -> Math.addExact(a, b);
+            case '-' -> Math.subtractExact(a, b);
+            case '*' -> Math.multiplyExact(a, b);
+            case '/' -> Math.floorDiv(a, b);
+            case '^' -> (int) Math.pow(a, b);
+            case '%' -> a % b;
+            default -> 0;
+        };
     }
 }
