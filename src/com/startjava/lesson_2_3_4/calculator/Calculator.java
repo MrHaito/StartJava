@@ -31,14 +31,21 @@ public class Calculator {
     }
 
     int calculate() {
-        return switch (sign) {
-            case '+' -> Math.addExact(a, b);
-            case '-' -> Math.subtractExact(a, b);
-            case '*' -> Math.multiplyExact(a, b);
-            case '/' -> Math.floorDiv(a, b);
-            case '^' -> (int) Math.pow(a, b);
-            case '%' -> a % b;
-            default -> 0;
-        };
+        switch(sign) {
+            case '+':
+                return Math.addExact(a, b);
+            case '-':
+                return Math.subtractExact(a, b);
+            case '*':
+                return Math.multiplyExact(a, b);
+            case '/':
+                return Math.floorDiv(a, b);
+            case '^':
+                return (int) Math.pow(a, b);
+            case '%':
+                return a % b;
+            default:
+                return 0;
+        }
     }
 }
