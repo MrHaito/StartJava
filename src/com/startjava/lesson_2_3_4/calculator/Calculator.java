@@ -4,33 +4,29 @@ public class Calculator {
     private int a;
     private int b;
     private char sign;
-    private int result;
-
-    public void setA(int a) {
-        this.a = a;
-    }
+    private String math = "";
 
     public int getA() {
         return a;
-    }
-
-    public void setSign(char sign) {
-        this.sign = sign;
-    }
-
-    public char getSign() {
-        return sign;
-    }
-
-    public void setB(int b) {
-        this.b = b;
     }
 
     public int getB() {
         return b;
     }
 
+    public char getSign() {
+        return sign;
+    }
+
+    public void setMath(String math) {
+        this.math = math;
+    }
+
     int calculate() {
+        String[] mathArray = math.split(" ");
+        a = Integer.parseInt(mathArray[0]);
+        sign = mathArray[1].charAt(0);
+        b = Integer.parseInt(mathArray[2]);
         switch(sign) {
             case '+':
                 return Math.addExact(a, b);

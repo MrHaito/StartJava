@@ -10,10 +10,8 @@ public class CalculatorTest {
 
         while(!answer.equals("no")) {
             System.out.print("Введите математическое выражение: ");
-            String[] math = scanner.nextLine().split(" ");
-            calculator.setA(Integer.parseInt(math[0]));
-            calculator.setSign(math[1].charAt(0));
-            calculator.setB(Integer.parseInt(math[2]));
+            calculator.setMath(scanner.nextLine());
+            calculator.calculate();
             System.out.println(calculator.getA() + " " + calculator.getSign() + " " + calculator.getB() + " = " + calculator.calculate());
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
