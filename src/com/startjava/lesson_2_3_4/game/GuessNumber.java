@@ -10,7 +10,7 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
-    private static int globalCount = 10;
+    private static int globalCount = 2;
     private int targetNum;
 
     public static int getGlobalCount() {
@@ -73,9 +73,9 @@ public class GuessNumber {
         int count = 0;
         while (count < 2) {
             currentPlayer = currentPlayer == player1 ? player2 : player1;
-
             currentPlayer.fillZero();
             currentPlayer.setCount(0);
+            count++;
         }
 
     }
