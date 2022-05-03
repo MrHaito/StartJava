@@ -38,9 +38,6 @@ public class GuessNumber {
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.addNum(scanner.nextInt());
 
-            System.out.format("Число %d " + ((currentPlayer.getNums()[currentPlayer.getCount() - 1] < targetNum) ? "меньше" : "больше") + " того, что загадал компьютер", currentPlayer.getNums()[currentPlayer.getCount() - 1]);
-
-
             if (currentPlayer.getNums()[currentPlayer.getCount() - 1] < targetNum) {
                 System.out.format("Число %d %s того, что загадал компьютер\n", currentPlayer.getNums()[currentPlayer.getCount() - 1], "меньше");
             } else if (currentPlayer.getNums()[currentPlayer.getCount() - 1] > targetNum) {
@@ -49,8 +46,6 @@ public class GuessNumber {
                 System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum, (currentPlayer.getCount()));
                 break;
             }
-
-
 
             if (currentPlayer.getCount() == globalCount) {
                 System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
