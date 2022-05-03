@@ -11,8 +11,7 @@ public class GuessNumber {
     private Player player2;
     private Player currentPlayer;
     private static int globalCount = 10;
-    private int computerNum;
-    private int endOfArray;
+    private int targetNum;
 
     public static int getGlobalCount() {
         return globalCount;
@@ -24,60 +23,65 @@ public class GuessNumber {
     }
 
     public void start() {
-        resetGame();
-        computerNum = random.nextInt(100) + 1;
+        initGame();
+        targetNum = random.nextInt(100) + 1;
         System.out.println("Начинаем игру!");
         System.out.println("У каждого игрока " + globalCount + " попыток");
-        gameProcess();
-        arraysDisplay();
+        play();
+        displayPlayerNums();
     }
 
-    private void gameProcess() {
+    private void play() {
         do {
             currentPlayer = currentPlayer == player1 ? player2 : player1;
 
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
-            currentPlayer.setNum(scanner.nextInt());
-            currentPlayer.addNumInArray();
+            currentPlayer.addNum(scanner.nextInt());
 
-            if (currentPlayer.getNum() < computerNum) {
-                System.out.println("Число " + currentPlayer.getNum() + " меньше того, что загадал компьютер");
-            } else if (currentPlayer.getNum() > computerNum) {
-                System.out.println("Число " + currentPlayer.getNum() + " больше того, что загадал компьютер");
+            System.out.format("Число %d " + ((currentPlayer.getNums()[currentPlayer.getCount() - 1] < targetNum) ? "меньше" : "больше") + " того, что загадал компьютер", currentPlayer.getNums()[currentPlayer.getCount() - 1]);
+
+
+            if (currentPlayer.getNums()[currentPlayer.getCount() - 1] < targetNum) {
+                System.out.format("Число %d %s того, что загадал компьютер\n", currentPlayer.getNums()[currentPlayer.getCount() - 1], "меньше");
+            } else if (currentPlayer.getNums()[currentPlayer.getCount() - 1] > targetNum) {
+                System.out.format("Число %d %s того, что загадал компьютер\n", currentPlayer.getNums()[currentPlayer.getCount() - 1], "больше");
             } else {
-                System.out.println("Игрок " + currentPlayer.getName() + " угадал число " + computerNum + " с " + (globalCount - currentPlayer.getCount()) + " попытки");
+                System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum, (currentPlayer.getCount()));
+                break;
             }
 
-            if (currentPlayer.getCount() == 0) {
-                System.out.println("У игрока " + currentPlayer.getName() + " кончились попытки");
+
+
+            if (currentPlayer.getCount() == globalCount) {
+                System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
             }
 
-        } while (currentPlayer.getNum() != computerNum && (player1.getCount() != 0 || player2.getCount() != 0));
+        } while (player1.getCount() != globalCount || player2.getCount() != globalCount);
     }
 
-    private void arraysDisplay() {
-        System.out.print("Числа игрока " + player1.getName() + ": ");
-        endOfArray = globalCount - player1.getCount();
-        int[] numsCopy = Arrays.copyOf(player1.getNums(), endOfArray);
-        for (int j : numsCopy) {
-            System.out.print(j + " ");
+    private void displayPlayerNums() {
+        int count = 0;
+        while (count < 2) {
+            currentPlayer = currentPlayer == player1 ? player2 : player1;
+
+            System.out.print("Числа игрока " + currentPlayer.getName() + ": ");
+            int[] numsCopy = Arrays.copyOf(currentPlayer.getNums(), currentPlayer.getCount());
+            for (int num : numsCopy) {
+                System.out.print(num + " ");
+            }
+            count++;
+            System.out.print("\n");
         }
-        Arrays.fill(player1.getNums(), 0, endOfArray, 0);
-        System.out.print("\n");
-        System.out.print("Числа игрока " + player2.getName() + ": ");
-        endOfArray = globalCount - player2.getCount();
-        numsCopy = Arrays.copyOf(player2.getNums(), endOfArray);
-        for (int j : numsCopy) {
-            System.out.print(j + " ");
-        }
-        System.out.print("\n");
-        Arrays.fill(player2.getNums(), 0, endOfArray, 0);
     }
 
-    private void resetGame() {
-        player1.setNum(0);
-        player1.setCount(globalCount);
-        player2.setNum(0);
-        player2.setCount(globalCount);
+    private void initGame() {
+        int count = 0;
+        while (count < 2) {
+            currentPlayer = currentPlayer == player1 ? player2 : player1;
+
+            currentPlayer.fillZero();
+            currentPlayer.setCount(0);
+        }
+
     }
 }

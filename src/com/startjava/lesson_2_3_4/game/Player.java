@@ -1,10 +1,11 @@
 package com.startjava.lesson_2_3_4.game;
 
+import java.util.Arrays;
+
 public class Player {
     private String name;
-    private int num;
-    private int count = GuessNumber.getGlobalCount();
-    private int[] nums = new int[count];
+    private int count;
+    private int[] nums = new int[GuessNumber.getGlobalCount()];
 
     public Player(String name) {
         this.name = name;
@@ -12,14 +13,6 @@ public class Player {
 
     public String getName() {
         return name;
-    }
-
-    public int getNum() {
-        return num;
-    }
-
-    public void setNum(int num) {
-        this.num = num;
     }
 
     public int getCount() {
@@ -31,11 +24,15 @@ public class Player {
     }
 
     public int[] getNums() {
-        return nums;
+        return Arrays.copyOf(nums, nums.length);
     }
 
-    void addNumInArray() {
-        nums[nums.length - count] = num;
-        count--;
+    public void addNum(int num) {
+        nums[count] = num;
+        count++;
+    }
+
+    public void fillZero() {
+        Arrays.fill(nums, 0, count, 0);
     }
 }
