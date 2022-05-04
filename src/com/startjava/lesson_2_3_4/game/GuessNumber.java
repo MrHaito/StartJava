@@ -10,16 +10,16 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
-    private static int globalCount = 2;
+    private static int globalCount = 10;
     private int targetNum;
-
-    public static int getGlobalCount() {
-        return globalCount;
-    }
 
     public GuessNumber(Player player1, Player player2) {
         this.player1 = player1;
         this.player2 = player2;
+    }
+
+    public static int getGlobalCount() {
+        return globalCount;
     }
 
     public void start() {
@@ -27,25 +27,36 @@ public class GuessNumber {
         targetNum = random.nextInt(100) + 1;
         System.out.println("Начинаем игру!");
         System.out.println("У каждого игрока " + globalCount + " попыток");
-        play();
+        startGame();
         displayPlayerNums();
     }
 
-    private void play() {
+    private void initGame() {
+        player1.fillZero();
+        player1.setCount(0);
+        player2.fillZero();
+        player2.setCount(0);
+    }
+
+    private void startGame() {
         do {
             currentPlayer = currentPlayer == player1 ? player2 : player1;
 
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.addNum(scanner.nextInt());
 
-            if (currentPlayer.getNums()[currentPlayer.getCount() - 1] < targetNum) {
-                System.out.format("Число %d %s того, что загадал компьютер\n", currentPlayer.getNums()[currentPlayer.getCount() - 1], "меньше");
-            } else if (currentPlayer.getNums()[currentPlayer.getCount() - 1] > targetNum) {
-                System.out.format("Число %d %s того, что загадал компьютер\n", currentPlayer.getNums()[currentPlayer.getCount() - 1], "больше");
-            } else {
-                System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum, (currentPlayer.getCount()));
+            int playerNum = currentPlayer.getNums()[currentPlayer.getCount() - 1];
+
+            if (playerNum == targetNum) {
+                System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum,
+                        (currentPlayer.getCount()));
                 break;
             }
+
+            String answer = playerNum < targetNum
+                    ? "Число " + playerNum + " меньше того, что загадал компьютер"
+                    : "Число " + playerNum + " больше того, что загадал компьютер";
+            System.out.println(answer);
 
             if (currentPlayer.getCount() == globalCount) {
                 System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
@@ -55,8 +66,7 @@ public class GuessNumber {
     }
 
     private void displayPlayerNums() {
-        int count = 0;
-        while (count < 2) {
+        for (int i = 0; i < 2; i++) {
             currentPlayer = currentPlayer == player1 ? player2 : player1;
 
             System.out.print("Числа игрока " + currentPlayer.getName() + ": ");
@@ -64,19 +74,7 @@ public class GuessNumber {
             for (int num : numsCopy) {
                 System.out.print(num + " ");
             }
-            count++;
             System.out.print("\n");
         }
-    }
-
-    private void initGame() {
-        int count = 0;
-        while (count < 2) {
-            currentPlayer = currentPlayer == player1 ? player2 : player1;
-            currentPlayer.fillZero();
-            currentPlayer.setCount(0);
-            count++;
-        }
-
     }
 }

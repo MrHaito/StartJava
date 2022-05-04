@@ -24,7 +24,7 @@ public class Player {
     }
 
     public int[] getNums() {
-        return Arrays.copyOf(nums, nums.length);
+        return Arrays.copyOf(nums, count);
     }
 
     public void addNum(int num) {
