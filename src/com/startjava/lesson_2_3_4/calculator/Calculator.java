@@ -1,33 +1,13 @@
 package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
-    private int a;
-    private int b;
-    private char sign;
-    private String math = "";
 
-    public int getA() {
-        return a;
-    }
-
-    public int getB() {
-        return b;
-    }
-
-    public char getSign() {
-        return sign;
-    }
-
-    public void setMath(String math) {
-        this.math = math;
-    }
-
-    int calculate() {
-        String[] mathArray = math.split(" ");
-        a = Integer.parseInt(mathArray[0]);
-        sign = mathArray[1].charAt(0);
-        b = Integer.parseInt(mathArray[2]);
-        switch(sign) {
+    int calculate(String math) {
+        String[] partsExpression = math.split(" ");
+        int a = Integer.parseInt(partsExpression[0]);
+        char sign = partsExpression[1].charAt(0);
+        int b = Integer.parseInt(partsExpression[2]);
+        switch (sign) {
             case '+':
                 return Math.addExact(a, b);
             case '-':

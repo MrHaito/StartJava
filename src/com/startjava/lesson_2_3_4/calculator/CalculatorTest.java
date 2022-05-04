@@ -8,11 +8,10 @@ public class CalculatorTest {
         Scanner scanner = new Scanner(System.in);
         String answer = "";
 
-        while(!answer.equals("no")) {
+        while (!answer.equals("no")) {
             System.out.print("Введите математическое выражение: ");
-            calculator.setMath(scanner.nextLine());
-            calculator.calculate();
-            System.out.println(calculator.getA() + " " + calculator.getSign() + " " + calculator.getB() + " = " + calculator.calculate());
+            String math = scanner.nextLine();
+            System.out.format("%s = %d\n", math, calculator.calculate(math));
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 answer = scanner.nextLine();
