@@ -10,7 +10,7 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
-    private static int globalCount = 2;
+    private static int globalCount = 10;
     private int targetNum;
 
     public GuessNumber(Player player1, Player player2) {
