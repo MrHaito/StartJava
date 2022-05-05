@@ -10,7 +10,7 @@ public class GuessNumber {
     private Player player1;
     private Player player2;
     private Player currentPlayer;
-    private static int globalCount = 10;
+    private static int globalCount = 2;
     private int targetNum;
 
     public GuessNumber(Player player1, Player player2) {
@@ -20,6 +20,10 @@ public class GuessNumber {
 
     public static int getGlobalCount() {
         return globalCount;
+    }
+
+    private void changePlayer() {
+        currentPlayer = currentPlayer == player1 ? player2 : player1;
     }
 
     public void start() {
@@ -40,7 +44,7 @@ public class GuessNumber {
 
     private void startGame() {
         do {
-            currentPlayer = currentPlayer == player1 ? player2 : player1;
+            changePlayer();
 
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.addNum(scanner.nextInt());
@@ -49,14 +53,12 @@ public class GuessNumber {
 
             if (playerNum == targetNum) {
                 System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum,
-                        (currentPlayer.getCount()));
+                        currentPlayer.getCount());
                 break;
             }
 
-            String answer = playerNum < targetNum
-                    ? "Число " + playerNum + " меньше того, что загадал компьютер"
-                    : "Число " + playerNum + " больше того, что загадал компьютер";
-            System.out.println(answer);
+            String answer = playerNum < targetNum ? "меньше" : "больше";
+            System.out.format("Число %d %s того, что загадал компьютер\n", playerNum, answer);
 
             if (currentPlayer.getCount() == globalCount) {
                 System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
@@ -67,11 +69,10 @@ public class GuessNumber {
 
     private void displayPlayerNums() {
         for (int i = 0; i < 2; i++) {
-            currentPlayer = currentPlayer == player1 ? player2 : player1;
+            changePlayer();
 
             System.out.print("Числа игрока " + currentPlayer.getName() + ": ");
-            int[] numsCopy = Arrays.copyOf(currentPlayer.getNums(), currentPlayer.getCount());
-            for (int num : numsCopy) {
+            for (int num : currentPlayer.getNums()) {
                 System.out.print(num + " ");
             }
             System.out.print("\n");
