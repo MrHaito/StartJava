@@ -4,14 +4,19 @@ import java.util.Scanner;
 
 public class CalculatorTest {
     public static void main(String[] args) {
-        Calculator calculator = new Calculator();
+
         Scanner scanner = new Scanner(System.in);
         String answer = "";
 
         while (!answer.equals("no")) {
-            System.out.print("Введите математическое выражение: ");
-            String math = scanner.nextLine();
-            System.out.format("%s = %d\n", math, calculator.calculate(math));
+            String math;
+
+            do {
+                System.out.print("Введите математическое выражение: ");
+                math = scanner.nextLine();
+            } while (!Calculator.checkNums(math));
+
+            System.out.format("%s = %d\n", math, Calculator.calculate(math));
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 answer = scanner.nextLine();
