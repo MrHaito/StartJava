@@ -43,8 +43,8 @@ public class GuessNumber {
     }
 
     private void startGame() {
+        changePlayer();
         do {
-            changePlayer();
 
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
             currentPlayer.addNum(scanner.nextInt());
