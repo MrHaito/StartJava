@@ -4,7 +4,6 @@ import java.util.Scanner;
 
 public class CalculatorTest {
     public static void main(String[] args) {
-
         Scanner scanner = new Scanner(System.in);
         String answer = "";
 
@@ -14,9 +13,9 @@ public class CalculatorTest {
             do {
                 System.out.print("Введите математическое выражение: ");
                 math = scanner.nextLine();
-            } while (!Calculator.checkNums(math));
+            } while (Calculator.calculate(math).equals("Неправильно"));
+            System.out.println(Calculator.calculate(math));
 
-            System.out.format("%s = %d\n", math, Calculator.calculate(math));
             do {
                 System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                 answer = scanner.nextLine();
