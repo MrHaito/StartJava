@@ -23,7 +23,7 @@ public class Calculator {
 
     private static void checkNums(int a, int b) throws IllegalArgumentException {
         if (a < 0 || b < 0) {
-            throw new IllegalArgumentException("×èñëà äîëæíû áûòü ïîëîæèòåëüíûìè");
+            throw new IllegalArgumentException("ÐžÐ±Ð° Ñ‡Ð¸ÑÐ»Ð° Ð´Ð¾Ð»Ð¶Ð½Ñ‹ Ð±Ñ‹Ñ‚ÑŒ Ð¿Ð¾Ð»Ð¾Ð¶Ð¸Ñ‚ÐµÐ»ÑŒÐ½Ñ‹Ð¼Ð¸");
         }
     }
 }
