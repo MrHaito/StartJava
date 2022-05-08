@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.calculator;
 
 public class Calculator {
 
-    static int calculate(String math) throws Exception {
+    static int calculate(String math) throws IllegalArgumentException {
         String[] partsExpression = math.split(" ");
         int a = Integer.parseInt(partsExpression[0]);
         char sign = partsExpression[1].charAt(0);
@@ -21,9 +21,9 @@ public class Calculator {
         };
     }
 
-    private static void checkNums(int a, int b) throws Exception {
+    private static void checkNums(int a, int b) throws IllegalArgumentException {
         if (a < 0 || b < 0) {
-            throw new Exception("Числа должны быть положительными");
+            throw new IllegalArgumentException("Числа должны быть положительными");
         }
     }
 }

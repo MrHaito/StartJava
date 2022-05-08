@@ -8,20 +8,21 @@ public class CalculatorTest {
         String answer = "";
 
         while (!answer.equals("no")) {
-            System.out.print("Введите математическое выражение: ");
+            System.out.print("Р’РІРµРґРёС‚Рµ РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ: ");
             String math = scanner.nextLine();
 
             try {
                 System.out.format("%s = %d\n", math, Calculator.calculate(math));
                 do {
-                    System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+                    System.out.print("РҐРѕС‚РёС‚Рµ РїСЂРѕРґРѕР»Р¶РёС‚СЊ РІС‹С‡РёСЃР»РµРЅРёСЏ? [yes/no]: ");
                     answer = scanner.nextLine();
                 } while (!answer.equals("yes") && !answer.equals("no"));
             }
             catch (NumberFormatException e) {
-                System.out.println("Числа должны быть целыми");
-            } catch (Exception e) {
-                System.out.println("Числа должны быть положительными");
+                System.out.println("Р§РёСЃР»Р° РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ С†РµР»С‹РјРё");
+            }
+            catch (IllegalArgumentException e) {
+                System.out.println("Р§РёСЃР»Р° РґРѕР»Р¶РЅС‹ Р±С‹С‚СЊ РїРѕР»РѕР¶РёС‚РµР»СЊРЅС‹РјРё");
             }
         }
     }
