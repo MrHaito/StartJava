@@ -9,13 +9,20 @@ public class GuessNumber {
     private Scanner scanner = new Scanner(System.in);
     private Player player1;
     private Player player2;
+    private Player player3;
+    private Player[] players = new Player[3];
     private Player currentPlayer;
     private static int globalCount = 10;
     private int targetNum;
+    private int countOfPlayers;
 
-    public GuessNumber(Player player1, Player player2) {
+    public GuessNumber(Player player1, Player player2, Player player3) {
         this.player1 = player1;
+        players[0] = this.player1;
         this.player2 = player2;
+        players[1] = this.player2;
+        this.player3 = player3;
+        players[2] = this.player3;
     }
 
     public static int getGlobalCount() {
@@ -23,7 +30,15 @@ public class GuessNumber {
     }
 
     private void changePlayer() {
-        currentPlayer = currentPlayer == player1 ? player2 : player1;
+        switch (countOfPlayers) {
+            case 0 -> currentPlayer = player1;
+            case 1 -> currentPlayer = player2;
+            case 2 -> currentPlayer = player3;
+        }
+        countOfPlayers++;
+        if (countOfPlayers >= 3) {
+            countOfPlayers = 0;
+        }
     }
 
     public void start() {
@@ -36,20 +51,24 @@ public class GuessNumber {
     }
 
     private void initGame() {
+        countOfPlayers = random.nextInt(3);
+        System.out.println(countOfPlayers);
         player1.fillZero();
         player1.setCount(0);
         player2.fillZero();
         player2.setCount(0);
+        player3.fillZero();
+        player3.setCount(0);
     }
 
     private void startGame() {
-        changePlayer();
         do {
+            changePlayer();
 
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
-            currentPlayer.addNum(scanner.nextInt());
 
-            int playerNum = currentPlayer.getNums()[currentPlayer.getCount() - 1];
+            int playerNum = scanner.nextInt();
+            currentPlayer.addNum(playerNum);
 
             if (playerNum == targetNum) {
                 System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum,
@@ -68,7 +87,7 @@ public class GuessNumber {
     }
 
     private void displayPlayerNums() {
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             changePlayer();
 
             System.out.print("Числа игрока " + currentPlayer.getName() + ": ");

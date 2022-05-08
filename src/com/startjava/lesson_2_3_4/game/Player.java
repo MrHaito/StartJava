@@ -5,6 +5,7 @@ import java.util.Arrays;
 public class Player {
     private String name;
     private int count;
+    private int arrayCount;
     private int[] nums = new int[GuessNumber.getGlobalCount()];
 
     public Player(String name) {
@@ -24,15 +25,18 @@ public class Player {
     }
 
     public int[] getNums() {
-        return Arrays.copyOf(nums, count);
+        return Arrays.copyOf(nums, arrayCount);
     }
 
     public void addNum(int num) {
-        nums[count] = num;
+        if (num > 0 && num < 101) {
+            nums[arrayCount] = num;
+            arrayCount++;
+        }
         count++;
     }
 
     public void fillZero() {
-        Arrays.fill(nums, 0, count, 0);
+        Arrays.fill(nums, 0, arrayCount, 0);
     }
 }
