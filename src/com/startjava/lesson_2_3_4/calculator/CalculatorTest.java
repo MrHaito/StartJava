@@ -3,23 +3,26 @@ package com.startjava.lesson_2_3_4.calculator;
 import java.util.Scanner;
 
 public class CalculatorTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner scanner = new Scanner(System.in);
         String answer = "";
 
         while (!answer.equals("no")) {
-            String math;
+            System.out.print("Введите математическое выражение: ");
+            String math = scanner.nextLine();
 
-            do {
-                System.out.print("Р’РІРµРґРёС‚Рµ РјР°С‚РµРјР°С‚РёС‡РµСЃРєРѕРµ РІС‹СЂР°Р¶РµРЅРёРµ: ");
-                math = scanner.nextLine();
-            } while (Calculator.calculate(math).equals("РќРµРїСЂР°РІРёР»СЊРЅРѕ"));
-            System.out.println(Calculator.calculate(math));
-
-            do {
-                System.out.print("РҐРѕС‚РёС‚Рµ РїСЂРѕРґРѕР»Р¶РёС‚СЊ РІС‹С‡РёСЃР»РµРЅРёСЏ? [yes/no]: ");
-                answer = scanner.nextLine();
-            } while (!answer.equals("yes") && !answer.equals("no"));
+            try {
+                System.out.format("%s = %d\n", math, Calculator.calculate(math));
+                do {
+                    System.out.print("Хотите продолжить вычисления? [yes/no]: ");
+                    answer = scanner.nextLine();
+                } while (!answer.equals("yes") && !answer.equals("no"));
+            }
+            catch (NumberFormatException e) {
+                System.out.println("Числа должны быть целыми");
+            } catch (Exception e) {
+                System.out.println("Числа должны быть положительными");
+            }
         }
     }
 }
