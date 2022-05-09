@@ -9,19 +9,17 @@ public class CalculatorTest {
 
         while (!answer.equals("no")) {
             System.out.print("Введите математическое выражение: ");
-            String math = scanner.nextLine();
+            String mathExpression = scanner.nextLine();
 
             try {
-                System.out.format("%s = %d\n", math, Calculator.calculate(math));
+                System.out.format("%s = %d\n", mathExpression, Calculator.calculate(mathExpression));
                 do {
                     System.out.print("Хотите продолжить вычисления? [yes/no]: ");
                     answer = scanner.nextLine();
                 } while (!answer.equals("yes") && !answer.equals("no"));
-            }
-            catch (NumberFormatException e) {
+            } catch (NumberFormatException e) {
                 System.out.println("Числа должны быть целыми");
-            }
-            catch (IllegalArgumentException e) {
+            } catch (IllegalArgumentException e) {
                 System.out.println("Числа должны быть положительными");
             }
         }
