@@ -13,11 +13,11 @@ public class ArrayTheme {
             System.out.print(nums[i] + " ");
         }
 
-        double midNum = nums[7];
-        double[] numsCopy = Arrays.copyOf(nums, nums.length);
+        double midNum = nums[nums.length / 2];
+        System.out.print("\nmidNum: " + midNum);
 
         System.out.print("\nИзмененный массив: ");
-        for (double num : numsCopy) {
+        for (double num : nums) {
             if (num > midNum) {
                 num = 0;
                 countOfChanges++;
