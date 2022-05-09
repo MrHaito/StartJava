@@ -24,6 +24,10 @@ public class Player {
         this.count = count;
     }
 
+    public void setArrayCount(int arrayCount) {
+        this.arrayCount = arrayCount;
+    }
+
     public int[] getNums() {
         return Arrays.copyOf(nums, arrayCount);
     }
