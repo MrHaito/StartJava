@@ -7,17 +7,13 @@ public class ArrayTheme {
         double[] nums = new double[15];
         int countOfChanges = 0;
 
+        System.out.print("Исходный массив: ");
         for (int i = 0; i < nums.length; i++) {
             nums[i] = Math.random();
-        }
-        System.out.print("Исходный массив: ");
-        for (double num : nums) {
-            System.out.print(num + " ");
+            System.out.print(nums[i] + " ");
         }
 
         double midNum = nums[7];
-        System.out.print("\nmidNum: " + midNum);
-
         double[] numsCopy = Arrays.copyOf(nums, nums.length);
 
         System.out.print("\nИзмененный массив: ");
