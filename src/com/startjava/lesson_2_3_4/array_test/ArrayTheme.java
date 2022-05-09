@@ -12,7 +12,6 @@ public class ArrayTheme {
         }
 
         double midNum = nums[nums.length / 2];
-        System.out.print("\nmidNum: " + midNum);
 
         System.out.print("\nИзмененный массив: ");
         for (double num : nums) {
