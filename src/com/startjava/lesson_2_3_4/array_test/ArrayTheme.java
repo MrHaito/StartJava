@@ -1,7 +1,5 @@
 package com.startjava.lesson_2_3_4.array_test;
 
-import java.util.Arrays;
-
 public class ArrayTheme {
     public static void main(String[] args) {
         double[] nums = new double[15];
