@@ -39,7 +39,7 @@ public class GuessNumber {
         System.out.println("Начинаем игру!");
         System.out.println("У каждого игрока " + GLOBAL_COUNT + " попыток");
         System.out.println("Первым начинает игрок " + players[currentNumOfPlayer].getName());
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < players.length; i++) {
             players[i].fillZero();
             players[i].setCountOfCurrectNumber(0);
             players[i].setGlobalCount(0);
