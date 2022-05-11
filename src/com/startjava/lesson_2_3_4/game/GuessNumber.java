@@ -10,7 +10,7 @@ public class GuessNumber {
     private final int rounds = 3;
     private Player currentPlayer;
     private static final int GLOBAL_COUNT = 10;
-    private static int gamesCount = 0;
+    private int gamesCount = 0;
     private int currentNumOfPlayer;
     private int countOfFails = 0;
     private int targetNum;
