@@ -6,91 +6,81 @@ import java.util.Scanner;
 public class GuessNumber {
     private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
-    private Player[] players = new Player[3];
+    private Player[] players;
+    private final int rounds = 3;
     private Player currentPlayer;
-    private static int globalCount = 10;
+    private static final int GLOBAL_COUNT = 10;
     private static int gamesCount = 0;
+    private int currentNumOfPlayer;
+    private int countOfFails = 0;
     private int targetNum;
-    private int countOfPlayers;
-    private Player[] winners = new Player[3];
 
-    public GuessNumber(Player player1, Player player2, Player player3) {
-        players[0] = player1;
-        players[1] = player2;
-        players[2] = player3;
+    public GuessNumber(Player[] players) {
+        this.players = players;
     }
 
     public static int getGlobalCount() {
-        return globalCount;
-    }
-
-    private void changePlayer() {
-        switch (countOfPlayers) {
-            case 0 -> currentPlayer = players[0];
-            case 1 -> currentPlayer = players[1];
-            case 2 -> currentPlayer = players[2];
-        }
-        countOfPlayers++;
-        if (countOfPlayers >= 3) {
-            countOfPlayers = 0;
-        }
+        return GLOBAL_COUNT;
     }
 
     public void start() {
         initGame();
         targetNum = random.nextInt(100) + 1;
-        System.out.println("У каждого игрока " + globalCount + " попыток");
-        startGame();
+        startGameplay();
         displayPlayerNums();
-    }
-
-    private void initGame() {
-        countOfPlayers = random.nextInt(3);
-        System.out.println("Начинаем игру!");
-        System.out.println("Первым начинает игрок " + players[countOfPlayers].getName());
-        for (int i = 0; i < 3; i++) {
-            players[i].fillZero();
-            players[i].setArrayCount(0);
-            players[i].setCount(0);
+        if (gamesCount == rounds) {
+            determineTheWinner();
+            gamesCount = 0;
         }
     }
 
-    private void startGame() {
+    private void initGame() {
+        currentNumOfPlayer = random.nextInt(players.length);
+        System.out.println("Начинаем игру!");
+        System.out.println("У каждого игрока " + GLOBAL_COUNT + " попыток");
+        System.out.println("Первым начинает игрок " + players[currentNumOfPlayer].getName());
+        for (int i = 0; i < 3; i++) {
+            players[i].fillZero();
+            players[i].setCountOfCurrectNumber(0);
+            players[i].setGlobalCount(0);
+        }
+    }
+
+    private void startGameplay() {
         do {
             changePlayer();
-
             System.out.print(currentPlayer.getName() + " введите число от 0 до 100: ");
-
-            int playerNum = scanner.nextInt();
-            currentPlayer.addNum(playerNum);
+            int playerNum = currentPlayer.addNum(scanner.nextInt());
 
             if (playerNum == targetNum) {
-                System.out.format("Игрок %s угадал число %d с %d попытки\n", currentPlayer.getName(), targetNum,
-                        currentPlayer.getCount());
-                winners[gamesCount] = currentPlayer;
+                System.out.format("Игрок %s угадал число %d с %d попытки\n",
+                        currentPlayer.getName(), targetNum, currentPlayer.getGlobalCount());
+                currentPlayer.setCountOfWins(currentPlayer.getCountOfWins() + 1);
                 gamesCount++;
-                if (gamesCount == 3) {
-                    ckeckWinner(winners);
-                    gamesCount = 0;
-                }
                 break;
             }
 
             String answer = playerNum < targetNum ? "меньше" : "больше";
             System.out.format("Число %d %s того, что загадал компьютер\n", playerNum, answer);
 
-            if (currentPlayer.getCount() == globalCount) {
+            if (currentPlayer.getGlobalCount() == GLOBAL_COUNT) {
                 System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
+                countOfFails++;
             }
+        } while (countOfFails < players.length);
+    }
 
-        } while (players[0].getCount() != globalCount || players[1].getCount() != globalCount ||
-                players[2].getCount() != globalCount);
+    private void changePlayer() {
+        currentPlayer = players[currentNumOfPlayer];
+        currentNumOfPlayer++;
+        if (currentNumOfPlayer >= players.length) {
+            currentNumOfPlayer = 0;
+        }
     }
 
     private void displayPlayerNums() {
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < players.length; i++) {
             changePlayer();
-
             System.out.print("Числа игрока " + currentPlayer.getName() + ": ");
             for (int num : currentPlayer.getNums()) {
                 System.out.print(num + " ");
@@ -99,24 +89,30 @@ public class GuessNumber {
         }
     }
 
-    private void ckeckWinner(Player winners[]) {
-        int winGamesP1 = 0;
-        int winGamesP2 = 0;
-        int winGamesP3 = 0;
-        for (int i = 0; i < winners.length; i++) {
-            if (winners[i] == players[0]) {
-                winGamesP1++;
-            } else if (winners[i] == players[1]) {
-                winGamesP2++;
-            } else if (winners[i] == players[2]) {
-                winGamesP3++;
+    private void determineTheWinner() {
+        Player winner = players[0];
+        boolean draw = true;
+
+        if (players.length == rounds) {
+            for (int i = 0; i < players.length - 1; i++) {
+                if (players[i].getCountOfWins() != players[i + 1].getCountOfWins()) {
+                    draw = false;
+                    break;
+                }
             }
-        }
-        if (winGamesP1 == winGamesP2 && winGamesP1 == winGamesP3) {
-            System.out.println("По итогам 3-х игр - ничья");
         } else {
-            int numOfWinner = Math.max(winGamesP1, Math.max(winGamesP2, winGamesP3));
-            System.out.println("По итогам 3-х игр победил игрок " + winners[numOfWinner].getName());
+            draw = false;
+        }
+
+        if (draw) {
+            System.out.format("По итогам %d игр - ничья\n", rounds);
+        } else {
+            for (Player player : players) {
+                if (player.getCountOfWins() > winner.getCountOfWins()) {
+                    winner = player;
+                }
+            }
+            System.out.format("По итогам %d игр победил игрок %s\n", rounds, winner.getName());
         }
     }
 }

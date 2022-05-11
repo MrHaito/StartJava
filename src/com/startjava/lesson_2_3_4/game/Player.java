@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int count;
-    private int arrayCount;
+    private int globalCount;
+    private int countOfCurrectNumber;
     private int[] nums = new int[GuessNumber.getGlobalCount()];
+    private int countOfWins;
 
     public Player(String name) {
         this.name = name;
@@ -16,31 +17,40 @@ public class Player {
         return name;
     }
 
-    public int getCount() {
-        return count;
+    public int getGlobalCount() {
+        return globalCount;
     }
 
-    public void setCount(int count) {
-        this.count = count;
+    public void setGlobalCount(int globalCount) {
+        this.globalCount = globalCount;
     }
 
-    public void setArrayCount(int arrayCount) {
-        this.arrayCount = arrayCount;
+    public void setCountOfCurrectNumber(int countOfCurrectNumber) {
+        this.countOfCurrectNumber = countOfCurrectNumber;
     }
 
     public int[] getNums() {
-        return Arrays.copyOf(nums, arrayCount);
+        return Arrays.copyOf(nums, countOfCurrectNumber);
     }
 
-    public void addNum(int num) {
+    public int getCountOfWins() {
+        return countOfWins;
+    }
+
+    public void setCountOfWins(int countOfWins) {
+        this.countOfWins = countOfWins;
+    }
+
+    public int addNum(int num) {
         if (num > 0 && num < 101) {
-            nums[arrayCount] = num;
-            arrayCount++;
+            nums[countOfCurrectNumber] = num;
+            countOfCurrectNumber++;
         }
-        count++;
+        globalCount++;
+        return num;
     }
 
     public void fillZero() {
-        Arrays.fill(nums, 0, arrayCount, 0);
+        Arrays.fill(nums, 0, countOfCurrectNumber, 0);
     }
 }
