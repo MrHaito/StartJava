@@ -4,9 +4,9 @@ import java.util.Arrays;
 
 public class Player {
     private String name;
-    private int globalCount;
+    private int countAttempts;
     private int countOfCurrectNumber;
-    private int[] nums = new int[GuessNumber.getGlobalCount()];
+    private int[] nums = new int[GuessNumber.getGlobalCountAttempts()];
     private int countOfWins;
 
     public Player(String name) {
@@ -17,12 +17,12 @@ public class Player {
         return name;
     }
 
-    public int getGlobalCount() {
-        return globalCount;
+    public int getCountAttempts() {
+        return countAttempts;
     }
 
-    public void setGlobalCount(int globalCount) {
-        this.globalCount = globalCount;
+    public void setCountAttempts(int countAttempts) {
+        this.countAttempts = countAttempts;
     }
 
     public void setCountOfCurrectNumber(int countOfCurrectNumber) {
@@ -46,7 +46,7 @@ public class Player {
             nums[countOfCurrectNumber] = num;
             countOfCurrectNumber++;
         }
-        globalCount++;
+        countAttempts++;
         return num;
     }
 

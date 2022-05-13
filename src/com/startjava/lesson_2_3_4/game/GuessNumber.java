@@ -7,9 +7,9 @@ public class GuessNumber {
     private Random random = new Random();
     private Scanner scanner = new Scanner(System.in);
     private Player[] players;
-    private final int rounds = 3;
+    private final int ROUNDS = 3;
     private Player currentPlayer;
-    private static final int GLOBAL_COUNT = 10;
+    private static final int GLOBAL_COUNT_ATTEMPTS = 10;
     private int gamesCount = 0;
     private int currentNumOfPlayer;
     private int countOfFails = 0;
@@ -19,8 +19,8 @@ public class GuessNumber {
         this.players = players;
     }
 
-    public static int getGlobalCount() {
-        return GLOBAL_COUNT;
+    public static int getGlobalCountAttempts() {
+        return GLOBAL_COUNT_ATTEMPTS;
     }
 
     public void start() {
@@ -28,8 +28,8 @@ public class GuessNumber {
         targetNum = random.nextInt(100) + 1;
         startGameplay();
         displayPlayerNums();
-        if (gamesCount == rounds) {
-            determineTheWinner();
+        if (gamesCount == ROUNDS) {
+            determineWinner();
             gamesCount = 0;
         }
     }
@@ -37,12 +37,12 @@ public class GuessNumber {
     private void initGame() {
         currentNumOfPlayer = random.nextInt(players.length);
         System.out.println("Начинаем игру!");
-        System.out.println("У каждого игрока " + GLOBAL_COUNT + " попыток");
+        System.out.println("У каждого игрока " + GLOBAL_COUNT_ATTEMPTS + " попыток");
         System.out.println("Первым начинает игрок " + players[currentNumOfPlayer].getName());
         for (int i = 0; i < players.length; i++) {
             players[i].fillZero();
             players[i].setCountOfCurrectNumber(0);
-            players[i].setGlobalCount(0);
+            players[i].setCountAttempts(0);
         }
     }
 
@@ -54,7 +54,7 @@ public class GuessNumber {
 
             if (playerNum == targetNum) {
                 System.out.format("Игрок %s угадал число %d с %d попытки\n",
-                        currentPlayer.getName(), targetNum, currentPlayer.getGlobalCount());
+                        currentPlayer.getName(), targetNum, currentPlayer.getCountAttempts());
                 currentPlayer.setCountOfWins(currentPlayer.getCountOfWins() + 1);
                 gamesCount++;
                 break;
@@ -63,7 +63,7 @@ public class GuessNumber {
             String answer = playerNum < targetNum ? "меньше" : "больше";
             System.out.format("Число %d %s того, что загадал компьютер\n", playerNum, answer);
 
-            if (currentPlayer.getGlobalCount() == GLOBAL_COUNT) {
+            if (currentPlayer.getCountAttempts() == GLOBAL_COUNT_ATTEMPTS) {
                 System.out.format("У игрока %s кончились попытки\n", currentPlayer.getName());
                 countOfFails++;
             }
@@ -89,11 +89,11 @@ public class GuessNumber {
         }
     }
 
-    private void determineTheWinner() {
+    private void determineWinner() {
         Player winner = players[0];
         boolean draw = true;
 
-        if (players.length == rounds) {
+        if (players.length == ROUNDS) {
             for (int i = 0; i < players.length - 1; i++) {
                 if (players[i].getCountOfWins() != players[i + 1].getCountOfWins()) {
                     draw = false;
@@ -105,14 +105,14 @@ public class GuessNumber {
         }
 
         if (draw) {
-            System.out.format("По итогам %d игр - ничья\n", rounds);
+            System.out.format("По итогам %d игр - ничья\n", ROUNDS);
         } else {
             for (Player player : players) {
                 if (player.getCountOfWins() > winner.getCountOfWins()) {
                     winner = player;
                 }
             }
-            System.out.format("По итогам %d игр победил игрок %s\n", rounds, winner.getName());
+            System.out.format("По итогам %d игр победил игрок %s\n", ROUNDS, winner.getName());
         }
     }
 }
