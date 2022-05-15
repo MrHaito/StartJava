@@ -5,37 +5,46 @@ import java.util.Scanner;
 public class BookShelfTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
+        BookShelf bookShelf = new BookShelf();
         String menu = """
                 1. Добавить книгу
                 2. Удалить книгу
                 3. Найти книгу по названию
                 4. Вывести количество книг
                 5. Показать свободное место
+                6. Закрыть полку
                 """;
-        String answer = "";
-        String menuSelect = "";
 
-        while (!answer.equals("no")) {
+        while (bookShelf.isOpen()) {
             System.out.println("Доступные команды: ");
             System.out.print(menu);
             System.out.println("Текущее состояние полки:");
-            BookShelf.seeBookShelf();
+            bookShelf.showBookShelf();
             System.out.print("Для выбора команды введите цифру (например, 1): ");
-            menuSelect = scanner.nextLine();
-            switch (menuSelect) {
-                case "1" -> BookShelf.addBook();
-                case "2" -> BookShelf.removeBook();
-                case "3" -> BookShelf.findBook();
-                case "4" -> System.out.println("Количество книг на полке: " + BookShelf.getBookCount());
-                case "5" -> System.out.println("Количество свободного места на полке: " + BookShelf.findFreeSpace());
+            switch (scanner.nextLine()) {
+                case "1" -> {
+                    System.out.print("Введите название книги: ");
+                    String title = scanner.nextLine();
+                    System.out.print("Введите имя автора: ");
+                    String author = scanner.nextLine();
+                    System.out.print("Введите год издания: ");
+                    int year = Integer.parseInt(scanner.nextLine());
+                    bookShelf.addBook(title, author, year);
+                }
+                case "2" -> {
+                    System.out.print("Введите название книги, которую хотите удалить: ");
+                    String title = scanner.nextLine();
+                    bookShelf.removeBook(title);
+                }
+                case "3" -> {
+                    System.out.print("Введите название книги: ");
+                    String title = scanner.nextLine();
+                    bookShelf.findBook(title);
+                }
+                case "4" -> System.out.println("Количество книг на полке: " + bookShelf.getBookCount());
+                case "5" -> System.out.println("Количество свободного места на полке: " + bookShelf.findFreeSpace());
+                case "6" -> bookShelf.close();
             }
-
-            do {
-                System.out.print("Хотите продолжить? [yes/no]: ");
-                answer = scanner.nextLine();
-            } while (!answer.equals("yes") && !answer.equals("no"));
         }
-
     }
-
 }

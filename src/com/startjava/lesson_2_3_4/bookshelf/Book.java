@@ -5,27 +5,21 @@ public class Book {
     private String title;
     private int year;
 
-    public String getAuthor() {
-        return author;
+    public Book(String author, String title, int year) {
+        this.author = author;
+        this.title = title;
+        this.year = year;
     }
 
-    public void setAuthor(String author) {
-        this.author = author;
+    public String getAuthor() {
+        return author;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
     public int getYear() {
         return year;
-    }
-
-    public void setYear(int year) {
-        this.year = year;
     }
 }
