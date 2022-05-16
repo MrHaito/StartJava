@@ -6,6 +6,8 @@ public class BookShelfTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         BookShelf bookShelf = new BookShelf();
+        boolean open = true;
+
         String menu = """
                 1. Добавить книгу
                 2. Удалить книгу
@@ -15,7 +17,7 @@ public class BookShelfTest {
                 6. Закрыть полку
                 """;
 
-        while (bookShelf.isOpen()) {
+        do {
             System.out.println("Доступные команды: ");
             System.out.print(menu);
             System.out.println("Текущее состояние полки:");
@@ -29,7 +31,11 @@ public class BookShelfTest {
                     String author = scanner.nextLine();
                     System.out.print("Введите год издания: ");
                     int year = Integer.parseInt(scanner.nextLine());
-                    bookShelf.addBook(title, author, year);
+                    try {
+                        bookShelf.addBook(title, author, year);
+                    } catch (ArrayIndexOutOfBoundsException e) {
+                        System.out.println("На полке нет места.");
+                    }
                 }
                 case "2" -> {
                     System.out.print("Введите название книги, которую хотите удалить: ");
@@ -43,8 +49,8 @@ public class BookShelfTest {
                 }
                 case "4" -> System.out.println("Количество книг на полке: " + bookShelf.getBookCount());
                 case "5" -> System.out.println("Количество свободного места на полке: " + bookShelf.findFreeSpace());
-                case "6" -> bookShelf.close();
+                case "6" -> open = false;
             }
-        }
+        } while (open);
     }
 }
