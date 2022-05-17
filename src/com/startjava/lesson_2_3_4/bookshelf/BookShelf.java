@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.bookshelf;
 
 public class BookShelf {
     private int bookCount = 0;
-    private Book[] books = new Book[10];
+    private Book[] books = new Book[2];
 
     public int getBookCount() {
         return bookCount;
@@ -16,7 +16,7 @@ public class BookShelf {
 
     public void removeBook(String title)  {
         boolean findBook = false;
-        for (int i = 0; i < bookCount - 1; i++) {
+        for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equals(title)) {
                 System.arraycopy(books, i + 1, books, i, bookCount - 1 - i);
                 books[bookCount - 1] = null;
@@ -31,7 +31,7 @@ public class BookShelf {
 
     public void findBook(String title) {
         boolean findBook = false;
-        for (int i = 0; i < bookCount - 1; i++) {
+        for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equals(title)) {
                 System.out.format("Автор книги %s - %s, дата выпуска - %d\n",
                         books[i].getTitle(), books[i].getAuthor(), books[i].getYear());
