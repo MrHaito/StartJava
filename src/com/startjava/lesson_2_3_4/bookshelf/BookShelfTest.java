@@ -6,7 +6,7 @@ public class BookShelfTest {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         BookShelf bookShelf = new BookShelf();
-        boolean open = true;
+        boolean exit = false;
 
         String menu = """
                 1. Добавить книгу
@@ -49,8 +49,8 @@ public class BookShelfTest {
                 }
                 case "4" -> System.out.println("Количество книг на полке: " + bookShelf.getBookCount());
                 case "5" -> System.out.println("Количество свободного места на полке: " + bookShelf.findFreeSpace());
-                case "6" -> open = false;
+                case "6" -> exit = true;
             }
-        } while (open);
+        } while (!exit);
     }
 }
