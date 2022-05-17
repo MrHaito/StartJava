@@ -30,11 +30,13 @@ public class BookShelfTest {
                     System.out.print("Введите имя автора: ");
                     String author = scanner.nextLine();
                     System.out.print("Введите год издания: ");
-                    int year = Integer.parseInt(scanner.nextLine());
                     try {
+                        int year = Integer.parseInt(scanner.nextLine());
                         bookShelf.addBook(title, author, year);
                     } catch (ArrayIndexOutOfBoundsException e) {
                         System.out.println("На полке нет места.");
+                    } catch (NumberFormatException e) {
+                        System.out.println("Год должен быть числом");
                     }
                 }
                 case "2" -> {

@@ -8,7 +8,7 @@ public class BookShelf {
         return bookCount;
     }
 
-    public void addBook(String title, String author, int year) throws ArrayIndexOutOfBoundsException {
+    public void addBook(String title, String author, int year) throws ArrayIndexOutOfBoundsException, NumberFormatException {
         Book book = new Book(title, author, year);
         books[bookCount] = book;
         bookCount++;
