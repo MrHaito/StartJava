@@ -2,7 +2,7 @@ package com.startjava.lesson_2_3_4.bookshelf;
 
 public class BookShelf {
     private int bookCount = 0;
-    private Book[] books = new Book[2];
+    private Book[] books = new Book[10];
 
     public int getBookCount() {
         return bookCount;
