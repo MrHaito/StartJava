@@ -37,8 +37,7 @@ public class BookShelf {
     public void findBook(String title) {
         int bookIndex = findIndexBook(title);
         if (bookIndex >= 0) {
-            System.out.format("Автор книги %s - %s, дата выпуска - %d\n",
-                    books[bookIndex].getTitle(), books[bookIndex].getAuthor(), books[bookIndex].getYear());
+            System.out.println(books[bookIndex]);
         } else {
             System.out.format("Книга %s не найдена\n", title);
         }
@@ -59,12 +58,11 @@ public class BookShelf {
     }
 
     private int findIndexBook(String title) {
-        int index = -1;
         for (int i = 0; i < bookCount; i++) {
             if (books[i].getTitle().equals(title)) {
-                index = i;
+                return i;
             }
         }
-        return index;
+        return -1;
     }
 }
