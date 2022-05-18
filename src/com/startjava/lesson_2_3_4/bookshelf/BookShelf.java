@@ -8,37 +8,38 @@ public class BookShelf {
         return bookCount;
     }
 
-    public void addBook(String title, String author, int year) throws ArrayIndexOutOfBoundsException, NumberFormatException {
-        Book book = new Book(title, author, year);
-        books[bookCount] = book;
-        bookCount++;
+    public void addBook(String title, String author, int year) {
+        int bookIndex = findIndexBook(title);
+        if (bookIndex >= 0) {
+            System.out.println("Книга с таким названием уже есть на полке");
+            return;
+        }
+        if (bookCount == books.length) {
+            System.out.println("На полке нет места");
+        } else {
+            Book book = new Book(title, author, year);
+            books[bookCount] = book;
+            bookCount++;
+        }
     }
 
     public void removeBook(String title)  {
-        boolean findBook = false;
-        for (int i = 0; i < bookCount; i++) {
-            if (books[i].getTitle().equals(title)) {
-                System.arraycopy(books, i + 1, books, i, bookCount - 1 - i);
-                books[bookCount - 1] = null;
-                findBook = true;
-                bookCount--;
-            }
-        }
-        if (!findBook) {
+        int bookIndex = findIndexBook(title);
+        if (bookIndex >= 0) {
+            System.arraycopy(books,  bookIndex + 1, books, bookIndex, bookCount - 1 - bookIndex);
+            books[bookCount - 1] = null;
+            bookCount--;
+        } else {
             System.out.format("Книга %s не найдена\n", title);
         }
     }
 
     public void findBook(String title) {
-        boolean findBook = false;
-        for (int i = 0; i < bookCount; i++) {
-            if (books[i].getTitle().equals(title)) {
-                System.out.format("Автор книги %s - %s, дата выпуска - %d\n",
-                        books[i].getTitle(), books[i].getAuthor(), books[i].getYear());
-                findBook = true;
-            }
-        }
-        if (!findBook) {
+        int bookIndex = findIndexBook(title);
+        if (bookIndex >= 0) {
+            System.out.format("Автор книги %s - %s, дата выпуска - %d\n",
+                    books[bookIndex].getTitle(), books[bookIndex].getAuthor(), books[bookIndex].getYear());
+        } else {
             System.out.format("Книга %s не найдена\n", title);
         }
     }
@@ -55,5 +56,15 @@ public class BookShelf {
                 System.out.format("<%s, %s, %d>\n", book.getAuthor(), book.getTitle(), book.getYear());
             }
         }
+    }
+
+    private int findIndexBook(String title) {
+        int index = -1;
+        for (int i = 0; i < bookCount; i++) {
+            if (books[i].getTitle().equals(title)) {
+                index = i;
+            }
+        }
+        return index;
     }
 }
